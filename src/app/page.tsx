@@ -1,4 +1,5 @@
 import {fetchHeroes} from "@/api";
+import {HERO_IMAGES} from "@/constants/heroImages";
 
 export default async function Home() {
 
@@ -7,13 +8,15 @@ export default async function Home() {
     const heroes = await heroesData;
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <h1>Heroes</h1>
-            <ul className="flex flex-wrap">
+        <main className="flex flex-col items-center p-24 max-w-5xl mx-auto">
+            <h1 className="mb-2">Heroes</h1>
+            <ul className="flex flex-wrap justify-center gap-4">
                 {heroes.map(hero => {
+
                     return (
-                        <li key={hero.id} className="w-4 h-4">
-                            {hero.localized_name}
+                        <li key={hero.id}
+                            style={{backgroundImage: `url(${HERO_IMAGES[hero.id].src})`}}
+                            className="w-56 h-32 dark:bg-slate-800 bg-no-repeat bg-cover bg-center">
                         </li>
                     )
                 })}
