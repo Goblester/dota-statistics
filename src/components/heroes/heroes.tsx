@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import {HeroDataType} from "@/types";
 import Link from "next/link";
 import {HERO_IMAGES} from "@/constants/heroImages";
@@ -23,17 +23,15 @@ const sortHeroes = (heroA: HeroDataType, heroB: HeroDataType) => heroA.localized
 
 export type PropsType = {
     heroes: HeroDataType[];
+    filter: ReactNode;
 };
 
-export const Heroes: React.FC<PropsType> = ({heroes}) => {
+export const Heroes: React.FC<PropsType> = ({heroes, filter}) => {
 
     return (
         <main className="flex flex-col items-center p-24 max-w-6xl mx-auto">
             <h1 className="text-3xl mb-8">CHOOSE YOUR HERO</h1>
-            <div className="flex justify-start w-full py-10 mb-10">
-                <span></span>
-                <input className="p-4 bg-gray-500 outline-transparent border-gray-700 border-2" />
-            </div>
+            {filter}
             <ul className="flex flex-wrap justify-center gap-4">
                 {heroes.sort(sortHeroes).map(hero => {
 

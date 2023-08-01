@@ -1,5 +1,6 @@
 import {fetchHeroes} from "@/api";
 import {Heroes} from "@/components/heroes/heroes";
+import {Filter} from "@/features/filter/Filter";
 
 export default async function Home() {
 
@@ -8,6 +9,6 @@ export default async function Home() {
     const heroes = await heroesData;
 
     return (
-       <Heroes heroes={heroes} />
+        <Heroes heroes={heroes} filter={<Filter />} />
     )
 }
