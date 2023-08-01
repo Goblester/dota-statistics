@@ -17,7 +17,7 @@ const heroes: HeroDataType[] = [
         attack_type: '',
         name: '',
         roles: [''],
-        localized_name: '',
+        localized_name: 'Test-Hero1',
         primary_attr: 'agi',
     },
     {
@@ -46,4 +46,13 @@ describe('<Heroes/>', () => {
         expect(allHeroes[2]).toHaveAttribute('href', '/heroes/testhero2');
     });
 
+    it('should sort heroes', () => {
+        heroes[1].localized_name = 'zeus';
+
+        render(<Heroes heroes={heroes}/>);
+
+        const allHeroes = screen.getAllByRole('link');
+
+        expect(allHeroes[2]).toHaveAttribute('href', '/heroes/zeus');
+    });
 });

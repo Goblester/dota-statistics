@@ -18,6 +18,8 @@ const getLinkName = (name: string): string => {
         .toLowerCase();
 }
 
+const sortHeroes = (heroA: HeroDataType, heroB: HeroDataType) => heroA.localized_name > heroB.localized_name ? 1 : -1;
+
 
 export type PropsType = {
     heroes: HeroDataType[];
@@ -25,12 +27,15 @@ export type PropsType = {
 
 export const Heroes: React.FC<PropsType> = ({heroes}) => {
 
-
     return (
         <main className="flex flex-col items-center p-24 max-w-6xl mx-auto">
             <h1 className="text-3xl mb-8">CHOOSE YOUR HERO</h1>
+            <div className="flex justify-start w-full py-10 mb-10">
+                <span></span>
+                <input className="p-4 bg-gray-500 outline-transparent border-gray-700 border-2" />
+            </div>
             <ul className="flex flex-wrap justify-center gap-4">
-                {heroes.map(hero => {
+                {heroes.sort(sortHeroes).map(hero => {
 
                     return (
                         <li key={hero.id}>
