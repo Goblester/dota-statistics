@@ -32,7 +32,7 @@ const heroes: HeroDataType[] = [
 
 describe('<Heroes/>', () => {
     it('should render main text', () => {
-        render(<Heroes heroes={heroes}/>);
+        render(<Heroes heroes={heroes} />);
 
         expect(screen.getByText('CHOOSE YOUR HERO')).toBeInTheDocument();
     })
