@@ -123,7 +123,11 @@ import marci from './../assets/heroes/mini/marci.png';
 import primalBeast from './../assets/heroes/mini/primal_beast.png';
 import muerta from './../assets/heroes/mini/muerta.png';
 
-export const HERO_IMAGES = {
+type HeroImagesType  = {
+    [key: string]: {src: string};
+}
+
+export const HERO_IMAGES: HeroImagesType = {
     1: antiMage,
     2: axe,
     3: bane,

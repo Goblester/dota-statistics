@@ -10,5 +10,5 @@ export default async function Home() {
 
     return (
         <Heroes heroes={heroes} filter={<Filter />} />
-    )
+    );
 }

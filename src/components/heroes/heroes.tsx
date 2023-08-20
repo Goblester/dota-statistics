@@ -16,7 +16,7 @@ const getLinkName = (name: string): string => {
         .replaceAll(' ', '')
         .replaceAll('-', '')
         .toLowerCase();
-}
+};
 
 const sortHeroes = (heroA: HeroDataType, heroB: HeroDataType) => heroA.localized_name > heroB.localized_name ? 1 : -1;
 
@@ -55,9 +55,9 @@ export const Heroes: React.FC<PropsType> = ({heroes, filter}) => {
 
                             </Link>
                         </li>
-                    )
+                    );
                 })}
             </ul>
         </main>
-    )
-}
+    );
+};

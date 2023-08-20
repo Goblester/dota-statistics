@@ -25,5 +25,5 @@ export const Filter: React.FC = () => {
             </div>
             <input className="p-4 bg-gray-500 outline-transparent border-gray-700 border-2"/>
         </div>
-    )
-}
+    );
+};

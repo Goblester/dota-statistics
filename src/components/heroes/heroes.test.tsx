@@ -35,7 +35,7 @@ describe('<Heroes/>', () => {
         render(<Heroes heroes={heroes} />);
 
         expect(screen.getByText('CHOOSE YOUR HERO')).toBeInTheDocument();
-    })
+    });
     it('should render all heroes with correct link', () => {
         render(<Heroes heroes={heroes}/>);
 

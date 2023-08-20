@@ -6,5 +6,13 @@
   "parserOptions": {
     "project": true,
     "tsconfigRootDir": "__dirname"
+  },
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "semi": [2, "always"]
   }
 }
