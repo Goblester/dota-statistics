@@ -32,7 +32,7 @@ export const Heroes: React.FC<PropsType> = ({heroes, filter}) => {
         <main className="flex flex-col items-center p-24 max-w-6xl mx-auto">
             <h1 className="text-3xl mb-8">CHOOSE YOUR HERO</h1>
             {filter}
-            <ul className="flex flex-wrap justify-center gap-4">
+            <ul className="flex flex-wrap justify-between gap-4">
                 {heroes.sort(sortHeroes).map(hero => {
 
                     return (
