@@ -1,37 +1,46 @@
 "use client";
 import React, {useState} from "react";
 import {FILTER_ATTRIBUTES} from "@/constants/attributes";
+import filterDiamond from "@/assets/heroes/attributes/filter-diamond.png";
 import {SearchIcon} from "@/components/icons/searchIcon";
 
-
 const ATTRIBUTE_BUTTONS: AttributeType[] = ['str', 'agi', 'int', 'all'];
+
+const COMPLEXITY_BUTTONS = [1, 2, 3];
 
 type AttributeType = 'str' | 'agi' | 'int' | 'all' | '';
 
 
 export const Filter: React.FC = () => {
     const [activeAttribute, setActiveAttribute] = useState<AttributeType>("");
+    const [activeComplexity, setActiveComplexity] = useState<number>(0);
 
     return (
         <div
             className="flex justify-between w-full p-1 mb-10 bg-gradient-to-l from-gray-500 to-gray-700 border-black border items-center rounded-sm shadow-md">
             <div className="flex items-center">
-                <span className="ml-10">ATTRIBUTE</span>
+                <span className="ml-10 font-light text-gray-300">ATTRIBUTE</span>
                 <div className="flex gap-1 ml-10">
                     {ATTRIBUTE_BUTTONS.map(name => (
                         <button key={name} aria-label={`attribute ${name}`}
                                 onClick={() => setActiveAttribute((value) => value === name ? "" : name)}
-                                className={`w-11 h-8 bg-no-repeat bg-cover bg-center -ml-2 saturate-0 brightness-50 transition duration-100
-                                ${activeAttribute === name && 'saturate-100 brightness-100'}`}
+                                className={`w-11 h-8 bg-no-repeat bg-cover bg-center -ml-2 transition duration-100
+                                ${activeAttribute === name ? 'saturate-100 brightness-100' : 'saturate-0 brightness-50'}`}
                                 style={{backgroundImage: `url(${FILTER_ATTRIBUTES[name].src})`}}/>
                     ))}
                 </div>
             </div>
-            <div>
-                <span>COMPLEXITY</span>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
+            <div className="flex items-center">
+                <span className="font-light text-gray-300">COMPLEXITY</span>
+                <div className="flex gap-1 ml-10">
+                    {COMPLEXITY_BUTTONS.map(complexity => (
+                        <button key={complexity} aria-label={`complexity ${complexity}`}
+                                onClick={() => setActiveComplexity((value) => value === complexity ? 0 : complexity)}
+                                className={`w-11 h-8 bg-no-repeat bg-cover bg-center -ml-2 transition duration-100
+                                 ${activeComplexity >= complexity ? 'saturate-100 brightness-100' : 'saturate-0 brightness-50'}`}
+                                style={{backgroundImage: `url(${filterDiamond.src})`}}/>
+                    ))}
+                </div>
             </div>
             <div className="relative flex bg-gray-700 h-12 p-2 pl-12">
                 <SearchIcon size={26} className="absolute top-3 left-3 fill-gray-500"/>
