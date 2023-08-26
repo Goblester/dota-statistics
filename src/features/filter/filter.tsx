@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import {FILTER_ATTRIBUTES} from "@/constants/attributes";
 import filterDiamond from "@/assets/heroes/attributes/filter-diamond.png";
 import {SearchIcon} from "@/components/icons/searchIcon";
+import {makeAutoObservable} from "mobx";
+import {observer} from "mobx-react-lite";
 
 const ATTRIBUTE_BUTTONS: AttributeType[] = ['str', 'agi', 'int', 'all'];
 
@@ -10,9 +12,26 @@ const COMPLEXITY_BUTTONS = [1, 2, 3];
 
 type AttributeType = 'str' | 'agi' | 'int' | 'all' | '';
 
+class FilterState {
+    activeAttribute: AttributeType;
 
-export const Filter: React.FC = () => {
-    const [activeAttribute, setActiveAttribute] = useState<AttributeType>("");
+    constructor() {
+        makeAutoObservable(this);
+    }
+    
+    setAttribute (newValue: AttributeType) {
+        console.log('set', newValue);
+        if(newValue === this.activeAttribute) {
+            this.activeAttribute = "";
+        } else {
+            this.activeAttribute = newValue;
+        }
+    }
+}
+
+const myFilterState = new FilterState();
+
+export const FilterComponent: React.FC = observer(({filterState}: {filterState: FilterState}) => {
     const [activeComplexity, setActiveComplexity] = useState<number>(0);
 
     return (
@@ -23,9 +42,9 @@ export const Filter: React.FC = () => {
                 <div className="flex gap-1 ml-10">
                     {ATTRIBUTE_BUTTONS.map(name => (
                         <button key={name} aria-label={`attribute ${name}`}
-                                onClick={() => setActiveAttribute((value) => value === name ? "" : name)}
+                                onClick={() => filterState.setAttribute(name)}
                                 className={`w-11 h-8 bg-no-repeat bg-cover bg-center -ml-2 transition duration-100
-                                ${activeAttribute === name ? 'saturate-100 brightness-100' : 'saturate-0 brightness-50'}`}
+                                ${filterState.activeAttribute === name ? 'saturate-100 brightness-100' : 'saturate-0 brightness-50'}`}
                                 style={{backgroundImage: `url(${FILTER_ATTRIBUTES[name].src})`}}/>
                     ))}
                 </div>
@@ -48,4 +67,6 @@ export const Filter: React.FC = () => {
             </div>
         </div>
     );
-};
+});
+
+export const Filter = () => <FilterComponent filterState={myFilterState}  />;
