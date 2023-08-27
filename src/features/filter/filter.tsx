@@ -1,38 +1,20 @@
 "use client";
-import React, {useState} from "react";
+import React from "react";
 import {FILTER_ATTRIBUTES} from "@/constants/attributes";
 import filterDiamond from "@/assets/heroes/attributes/filter-diamond.png";
 import {SearchIcon} from "@/components/icons/searchIcon";
-import {makeAutoObservable} from "mobx";
 import {observer} from "mobx-react-lite";
+import {AttributeType, ComplexityType, filterState, FilterState} from "@/store/filter";
 
 const ATTRIBUTE_BUTTONS: AttributeType[] = ['str', 'agi', 'int', 'all'];
 
-const COMPLEXITY_BUTTONS = [1, 2, 3];
+const COMPLEXITY_BUTTONS: ComplexityType[] = [1, 2, 3];
 
-type AttributeType = 'str' | 'agi' | 'int' | 'all' | '';
-
-class FilterState {
-    activeAttribute: AttributeType;
-
-    constructor() {
-        makeAutoObservable(this);
-    }
-    
-    setAttribute (newValue: AttributeType) {
-        console.log('set', newValue);
-        if(newValue === this.activeAttribute) {
-            this.activeAttribute = "";
-        } else {
-            this.activeAttribute = newValue;
-        }
-    }
+type ObserverType = {
+    filterState: FilterState
 }
 
-const myFilterState = new FilterState();
-
-export const FilterComponent: React.FC = observer(({filterState}: {filterState: FilterState}) => {
-    const [activeComplexity, setActiveComplexity] = useState<number>(0);
+export const FilterComponent: React.FC = observer<ObserverType>(({filterState}) => {
 
     return (
         <div
@@ -44,7 +26,7 @@ export const FilterComponent: React.FC = observer(({filterState}: {filterState: 
                         <button key={name} aria-label={`attribute ${name}`}
                                 onClick={() => filterState.setAttribute(name)}
                                 className={`w-11 h-8 bg-no-repeat bg-cover bg-center -ml-2 transition duration-100
-                                ${filterState.activeAttribute === name ? 'saturate-100 brightness-100' : 'saturate-0 brightness-50'}`}
+                                ${filterState.attribute === name ? 'saturate-100 brightness-100' : 'saturate-0 brightness-50'}`}
                                 style={{backgroundImage: `url(${FILTER_ATTRIBUTES[name].src})`}}/>
                     ))}
                 </div>
@@ -54,19 +36,23 @@ export const FilterComponent: React.FC = observer(({filterState}: {filterState: 
                 <div className="flex gap-1 ml-10">
                     {COMPLEXITY_BUTTONS.map(complexity => (
                         <button key={complexity} aria-label={`complexity ${complexity}`}
-                                onClick={() => setActiveComplexity((value) => value === complexity ? 0 : complexity)}
+                                onClick={() => filterState.setComplexity(complexity)}
                                 className={`w-11 h-8 bg-no-repeat bg-cover bg-center -ml-2 transition duration-100
-                                 ${activeComplexity >= complexity ? 'saturate-100 brightness-100' : 'saturate-0 brightness-50'}`}
+                                 ${filterState.complexity >= complexity ? 'saturate-100 brightness-100' : 'saturate-0 brightness-50'}`}
                                 style={{backgroundImage: `url(${filterDiamond.src})`}}/>
                     ))}
                 </div>
             </div>
             <div className="relative flex bg-gray-700 h-12 p-2 pl-12">
                 <SearchIcon size={26} className="absolute top-3 left-3 fill-gray-500"/>
-                <input className="px-4 h-8 bg-gray-500 outline-none border-none bg-gray-700 focus:bg-gray-500"/>
+                <input
+                    className="px-4 h-8 bg-gray-500 outline-none border-none bg-gray-700 focus:bg-gray-500"
+                    value={filterState.search}
+                    onChange={(e) => filterState.changeSearch(e.currentTarget.value)}
+                />
             </div>
         </div>
     );
 });
 
-export const Filter = () => <FilterComponent filterState={myFilterState}  />;
+export const Filter = () => <FilterComponent filterState={filterState} />;
