@@ -44,7 +44,7 @@ export class FilterState {
      * @param {ComplexityType} newSearch - new search query
      */
     changeSearch (newSearch: string) {
-        this.search = newSearch.trim();
+        this.search = newSearch.trim().toLowerCase();
     }
 
 }

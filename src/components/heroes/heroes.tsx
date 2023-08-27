@@ -1,9 +1,13 @@
+//TODO mobx needs some SSR integration. This component should be sever side rendered
+"use client";
 import React, {ReactNode} from "react";
 import {HeroDataType} from "@/types";
 import Link from "next/link";
 import {HERO_IMAGES} from "@/constants/heroImages";
 import Image from "next/image";
 import {ATTRIBUTES} from "@/constants/attributes";
+import {filterState, FilterState} from "@/store/filter";
+import {observer} from "mobx-react-lite";
 
 
 /**
@@ -21,19 +25,24 @@ const getLinkName = (name: string): string => {
 const sortHeroes = (heroA: HeroDataType, heroB: HeroDataType) => heroA.localized_name > heroB.localized_name ? 1 : -1;
 
 
+const filterHero = ({attribute, search}: FilterState) => (hero: HeroDataType) =>
+    (!attribute || attribute === hero.primary_attr)
+    && (!search || hero.localized_name.toLowerCase().includes(search));
+
 export type PropsType = {
     heroes: HeroDataType[];
     filter: ReactNode;
+    filterState: FilterState;
 };
 
-export const Heroes: React.FC<PropsType> = ({heroes, filter}) => {
+export const HeroesComponent = observer<PropsType>(({heroes, filter, filterState}) => {
 
     return (
         <main className="flex flex-col items-center p-24 max-w-6xl mx-auto">
             <h1 className="text-3xl mb-8">CHOOSE YOUR HERO</h1>
             {filter}
             <ul className="flex flex-wrap justify-between gap-4">
-                {heroes.sort(sortHeroes).map(hero => {
+                {heroes.sort(sortHeroes).filter(filterHero(filterState)).map(hero => {
 
                     return (
                         <li key={hero.id}>
@@ -60,4 +69,11 @@ export const Heroes: React.FC<PropsType> = ({heroes, filter}) => {
             </ul>
         </main>
     );
-};
+});
+
+export const Heroes: React.FC<{ heroes: HeroDataType[]; filter: ReactNode; }> = ({filter, heroes}) =>
+    <HeroesComponent
+        heroes={heroes}
+        filter={filter}
+        filterState={filterState}
+    />;
