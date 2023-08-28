@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useTransition} from "react";
 import {FILTER_ATTRIBUTES} from "@/constants/attributes";
 import filterDiamond from "@/assets/heroes/attributes/filter-diamond.png";
 import {SearchIcon} from "@/components/icons/searchIcon";
@@ -15,6 +15,8 @@ type ObserverType = {
 }
 
 export const FilterComponent: React.FC = observer<ObserverType>(({filterState}) => {
+
+    const [isSearchPending, startTransition] = useTransition();
 
     return (
         <div
@@ -46,9 +48,14 @@ export const FilterComponent: React.FC = observer<ObserverType>(({filterState}) 
             <div className="relative flex bg-gray-700 h-12 p-2 pl-12">
                 <SearchIcon size={26} className="absolute top-3 left-3 fill-gray-500"/>
                 <input
-                    className="px-4 h-8 bg-gray-500 outline-none border-none bg-gray-700 focus:bg-gray-500"
+                    className={`px-4 h-8 bg-gray-500 outline-none border-none bg-gray-700 focus:bg-gray-500 
+                    ${isSearchPending && 'opacity-50'}`}
                     value={filterState.search}
-                    onChange={(e) => filterState.changeSearch(e.currentTarget.value)}
+                    onChange={(e) => {
+                        startTransition(() => {
+                            filterState.changeSearch(e.currentTarget.value);
+                        });
+                    }}
                 />
             </div>
         </div>
