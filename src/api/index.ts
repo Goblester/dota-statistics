@@ -4,7 +4,7 @@ const baseUrl = 'https://api.opendota.com/api';
 
 /**
  * gets all heroes short info
- * @return {Promise<HeroDataType>} - Heres short data
+ * @return {Promise<HeroDataType[]>} - Heres short data
  */
 export const fetchHeroes = async (): Promise<HeroDataType[]> => {
     try {

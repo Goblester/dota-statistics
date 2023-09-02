@@ -18,9 +18,18 @@ export default async function Hero({params}: PropsType) {
     const hero = await heroesData;
 
     return (
-       <div>
-           <div>{hero.localized_name}</div>
-           <Image src={HERO_IMAGES[heroId].src} alt={hero.localized_name} width={500} height={500} />
+       <div className="grid px-24 py-12 w-screen-2xl grid-cols-2 grid-rows-3">
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum lorem ipsum lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum lorem ipsum lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum lorem ipsum lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum lorem ipsum</div>
+          <div className="p-4 text-black bg-white border-green-500 border-2">lorem ipsum lorem ipsum lorem ipsum </div>
        </div>
     );
 }
