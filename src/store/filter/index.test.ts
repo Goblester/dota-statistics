@@ -1,16 +1,53 @@
+import {FilterState} from "@/store/filter/index";
 
-
+let filterState: FilterState;
 
 describe('setAttribute', () => {
-    it.todo('should set attribute');
-    it.todo('should reset attribute if new value = current value');
+    beforeEach(() => {
+        filterState = new FilterState();
+    });
+    it('should set attribute', () => {
+        expect(filterState.attribute).toBe('');
+        filterState.setAttribute('all');
+
+        expect(filterState.attribute).toBe('all');
+    });
+    it('should reset attribute if new value = current value', () => {
+        filterState.setAttribute('all');
+        filterState.setAttribute('all');
+
+        expect(filterState.attribute).toBe('');
+    });
 });
 
 describe('setComplexity', () => {
-    it.todo('should set complexity');
-    it.todo('should reset complexity if new value = current value');
+    beforeEach(() => {
+        filterState = new FilterState();
+    });
+
+    it('should set complexity', () => {
+        expect(filterState.complexity).toBe(0);
+        filterState.setComplexity(3);
+
+        expect(filterState.complexity).toBe(3);
+    });
+    it('should reset complexity if new value = current value', () => {
+        filterState.setComplexity(3);
+        filterState.setComplexity(3);
+
+        expect(filterState.complexity).toBe(0);
+    });
 });
 
 describe('changeSearch', () => {
-    it.todo('should change search');
+    beforeEach(() => {
+        filterState = new FilterState();
+    });
+
+    it('should change search', () => {
+        expect(filterState.search).toBe('');
+
+        filterState.changeSearch('TesT  Search   ');
+        expect(filterState.search).toBe('test  search');
+    });
 });
