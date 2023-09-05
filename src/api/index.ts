@@ -33,7 +33,7 @@ export const fetchHero = async (heroId: number): Promise<HeroStatsType> => {
  * @param heroId - hero id
  * @return {Promise<HeroStatsType>} - Hero data
  */
-export const fetchHeroDuration =async (heroId: number) => {
+export const fetchHeroDuration =async (heroId: number): Promise<HeroDurationType[]> => {
     try {
         const response = await fetch(`${baseUrl}/heroes/${heroId}/durations`);
         return await response.json() as HeroDurationType[];
