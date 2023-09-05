@@ -63,3 +63,9 @@ export type HeroStatsType = HeroDataType & {
     null_pick: number;
     null_win: number;
 }
+
+export type HeroDurationType = {
+    duration_bin: number;
+    games_played: number;
+    wins: number;
+}
