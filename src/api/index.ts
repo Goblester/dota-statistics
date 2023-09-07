@@ -1,4 +1,4 @@
-import {HeroDataType, HeroDurationType, HeroStatsType} from "@/types";
+import {HeroDataType, HeroDurationType, HeroStatsType, MatchupType} from "@/types";
 
 const baseUrl = 'https://api.opendota.com/api';
 
@@ -33,10 +33,19 @@ export const fetchHero = async (heroId: number): Promise<HeroStatsType> => {
  * @param heroId - hero id
  * @return {Promise<HeroStatsType>} - Hero data
  */
-export const fetchHeroDuration =async (heroId: number): Promise<HeroDurationType[]> => {
+export const fetchHeroDuration = async (heroId: number): Promise<HeroDurationType[]> => {
     try {
         const response = await fetch(`${baseUrl}/heroes/${heroId}/durations`);
         return await response.json() as HeroDurationType[];
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+export const fetchHeroMatchups = async (heroId: number): Promise<MatchupType[]> => {
+    try {
+        const response = await fetch(`${baseUrl}/heroes/${heroId}/matchups`);
+        return await response.json() as MatchupType[];
     } catch (e) {
         console.error(e);
     }

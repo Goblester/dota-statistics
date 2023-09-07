@@ -69,3 +69,9 @@ export type HeroDurationType = {
     games_played: number;
     wins: number;
 }
+
+export type MatchupType = {
+    hero_id: number;
+    games_played: number;
+    wins: number;
+}
