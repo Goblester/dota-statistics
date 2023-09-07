@@ -10,11 +10,11 @@ const ATTRIBUTE_BUTTONS: AttributeType[] = ['str', 'agi', 'int', 'all'];
 
 const COMPLEXITY_BUTTONS: ComplexityType[] = [1, 2, 3];
 
-type ObserverType = {
+type PropsType = {
     filterState: FilterState
 }
 
-export const FilterComponent: React.FC = observer<ObserverType>(({filterState}) => {
+export const FilterComponent: React.FC<PropsType> = observer(({filterState}) => {
 
     const [isSearchPending, startTransition] = useTransition();
 
