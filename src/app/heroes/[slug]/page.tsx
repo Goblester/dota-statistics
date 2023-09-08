@@ -1,8 +1,8 @@
 import {fetchHero, fetchHeroDuration, fetchHeroMatchups} from "@/api";
 import {HERO_IDS} from "@/constants/heroIds";
 import Image from "next/image";
-import {HERO_IMAGES} from "@/constants/heroImages";
-import {HeroDataType, HeroDurationType, MatchupType} from "@/types";
+import {HeroDurationType, HeroStatsType, MatchupType} from "@/types";
+import {getImageSrc} from "@/libs/getImageSrc/getImageSrc";
 
 type PropsType = {
     params: {
@@ -10,7 +10,7 @@ type PropsType = {
     };
 };
 
-type DataResponseType = [HeroDataType, HeroDurationType[], MatchupType[]];
+type DataResponseType = [HeroStatsType, HeroDurationType[], MatchupType[]];
 
 const getHeroWinPercentage = (durations: HeroDurationType[]) => {
     const {wins, games_played} = durations.reduce((acc, currentValue) => {
@@ -33,7 +33,7 @@ export default async function Hero({params}: PropsType) {
     return (
         <div className="grid grid-rows-[7] grid-cols-2 max-w-screen-2xl mx-auto mt-10">
             <div className="col-span-2 p-2 gap-x-2 grid grid-rows-2 grid-cols-[89px_repeat(4,_1fr)] h-24 bg-gray-700">
-                <Image src={HERO_IMAGES[heroId].src} alt={hero.localized_name} height={49} width={89}/>
+                <Image src={getImageSrc(hero.img)} alt={hero.localized_name} height={49} width={89}/>
                 <h1 className="col-span-2">
                     {hero.localized_name}<br/>
                     <small>
@@ -57,7 +57,7 @@ export default async function Hero({params}: PropsType) {
                     <div className="p-2">Преймущество</div>
                     <div className="p-2">Доля побед</div>
                     <div className="p-2">Матчи</div>
-                    {heroMatchups.slice(0, 10).map(({hero_id, wins, games_played})=>
+                    {heroMatchups.slice(0, 10).map(({hero_id, wins, games_played}) =>
                         <div key={hero_id} className="col-span-3">
                             {hero_id} | {wins} wins | {games_played} games played
                         </div>)}
