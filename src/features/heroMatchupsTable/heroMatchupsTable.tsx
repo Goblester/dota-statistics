@@ -1,5 +1,6 @@
 import React from "react";
 import {fetchHeroMatchups} from "@/api";
+import {getPercentage} from "@/libs/getPercentage/getPercentage";
 
 
 type PropsType = {
@@ -22,9 +23,8 @@ export const HeroMatchupsTable: React.FC<PropsType> = async  ({heroId}) => {
                 <div className="p-2">Матчи</div>
                 {heroMatchups.slice(0, 10).map(({hero_id, wins, games_played}) =>
                     <div key={hero_id} className="col-span-3">
-                        {hero_id} | {wins} wins | {games_played} games played
+                        {hero_id} | {getPercentage(wins, games_played)}%
                     </div>)}
-                <div className=""></div>
             </div>
         </div>
     );

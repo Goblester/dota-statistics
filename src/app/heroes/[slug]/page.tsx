@@ -4,6 +4,7 @@ import Image from "next/image";
 import {HeroDurationType, HeroStatsType, MatchupType} from "@/types";
 import {getImageSrc} from "@/libs/getImageSrc/getImageSrc";
 import {HeroMatchupsTable} from "@/features/heroMatchupsTable/heroMatchupsTable";
+import {getPercentage} from "@/libs/getPercentage/getPercentage";
 
 type PropsType = {
     params: {
@@ -20,7 +21,7 @@ const getHeroWinPercentage = (durations: HeroDurationType[]) => {
         return acc;
     }, {wins: 0, games_played: 0});
 
-    return Math.round((wins / games_played) * 10000) / 100;
+    return getPercentage(wins, games_played);
 };
 
 export default async function Hero({params}: PropsType) {
