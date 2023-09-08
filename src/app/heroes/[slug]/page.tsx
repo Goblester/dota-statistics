@@ -1,8 +1,9 @@
-import {fetchHero, fetchHeroDuration, fetchHeroMatchups} from "@/api";
+import {fetchHero, fetchHeroDuration} from "@/api";
 import {HERO_IDS} from "@/constants/heroIds";
 import Image from "next/image";
 import {HeroDurationType, HeroStatsType, MatchupType} from "@/types";
 import {getImageSrc} from "@/libs/getImageSrc/getImageSrc";
+import {HeroMatchupsTable} from "@/features/heroMatchupsTable/heroMatchupsTable";
 
 type PropsType = {
     params: {
@@ -26,7 +27,7 @@ export default async function Hero({params}: PropsType) {
 
     const heroId = HERO_IDS[params.slug];
 
-    const [hero, heroDuration, heroMatchups] = await Promise.all([fetchHero(heroId), fetchHeroDuration(heroId), fetchHeroMatchups(heroId)]) as DataResponseType;
+    const [hero, heroDuration] = await Promise.all([fetchHero(heroId), fetchHeroDuration(heroId)]) as DataResponseType;
 
     const winPercentage = getHeroWinPercentage(heroDuration);
 
@@ -50,20 +51,7 @@ export default async function Hero({params}: PropsType) {
                     <span className="capitalize opacity-50">Доля побед</span>
                 </div>
             </div>
-            <div className="mx-auto mt-10 w-full">
-                <h2>Силен против</h2>
-                <div className="grid grid-cols-4 w-full p-2 bg-gray-700 align-middle">
-                    <div className="p-2">Герой</div>
-                    <div className="p-2">Преймущество</div>
-                    <div className="p-2">Доля побед</div>
-                    <div className="p-2">Матчи</div>
-                    {heroMatchups.slice(0, 10).map(({hero_id, wins, games_played}) =>
-                        <div key={hero_id} className="col-span-3">
-                            {hero_id} | {wins} wins | {games_played} games played
-                        </div>)}
-                    <div className=""></div>
-                </div>
-            </div>
+            <HeroMatchupsTable heroId={heroId} />
         </div>
 
     );
