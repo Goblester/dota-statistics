@@ -7,9 +7,11 @@ type PropsType = {
     heroId: number;
 };
 
-
-export const HeroMatchupsTable: React.FC<PropsType> = async  ({heroId}) => {
-
+/**
+ * renders hero matchup table with sorting
+ * @param {number} heroId - hero id
+ */
+export const HeroMatchupsTable: React.FC<PropsType> = async ({heroId}) => {
 
     const heroMatchups = await fetchHeroMatchups(heroId);
 
