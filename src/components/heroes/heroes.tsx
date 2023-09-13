@@ -38,8 +38,8 @@ export type PropsType = {
 export const HeroesComponent = observer<PropsType>(({heroes, filter, filterState}) => {
 
     return (
-        <main className="flex flex-col items-center p-24 max-w-6xl mx-auto">
-            <h1 className="text-3xl mb-8">CHOOSE YOUR HERO</h1>
+        <main className="mx-auto flex max-w-6xl flex-col items-center p-24">
+            <h1 className="mb-8 text-3xl">CHOOSE YOUR HERO</h1>
             {filter}
             <ul className="flex flex-wrap justify-between gap-4">
                 {heroes.sort(sortHeroes).filter(filterHero(filterState)).map(hero => {
@@ -50,10 +50,10 @@ export const HeroesComponent = observer<PropsType>(({heroes, filter, filterState
                                 href={`/heroes/${getLinkName(hero.localized_name)}`}>
                                 <div
                                     style={{backgroundImage: `url(${HERO_IMAGES[hero.id]?.src})`}}
-                                    className="group relative w-56 h-32 dark:bg-slate-800 bg-no-repeat bg-cover bg-center hover:scale-125 hover:z-10 duration-300 overflow-hidden shadow-md
-                            after:absolute after:inset-0 after:bg-gradient-hero after:opacity-0 hover:after:opacity-100 after:duration-300">
+                                    className="group relative h-32 w-56 overflow-hidden bg-cover bg-center bg-no-repeat shadow-md duration-300 after:absolute after:inset-0 after:bg-gradient-hero
+                            after:opacity-0 after:duration-300 hover:z-10 hover:scale-125 hover:after:opacity-100 dark:bg-slate-800">
                                       <span
-                                          className="flex absolute uppercase top-full left-1/2 w-full text-lg -translate-x-1/2 group-hover:-translate-y-8 duration-300 z-10">
+                                          className="absolute left-1/2 top-full z-10 flex w-full -translate-x-1/2 text-lg uppercase duration-300 group-hover:-translate-y-8">
                                 <span className="mx-2">
                                     <Image src={ATTRIBUTES[hero.primary_attr]?.src} width={26} height={26}
                                            role="presentation" alt=""/>

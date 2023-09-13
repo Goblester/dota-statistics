@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "eslint:recommended", "plugin:@typescript-eslint/recommended-type-checked"],
+  "extends": ["next/core-web-vitals", "eslint:recommended", "plugin:@typescript-eslint/recommended-type-checked", "plugin:tailwindcss/recommended"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "root": true,

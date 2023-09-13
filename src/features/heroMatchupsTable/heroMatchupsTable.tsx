@@ -18,7 +18,7 @@ export const HeroMatchupsTable: React.FC<PropsType> = async ({heroId}) => {
     return (
         <div className="mx-auto mt-10 w-full">
             <h2>Силен против</h2>
-            <div className="grid grid-cols-4 w-full p-2 bg-gray-700 align-middle">
+            <div className="grid w-full grid-cols-4 bg-gray-700 p-2 align-middle">
                 <div className="p-2">Герой</div>
                 <div className="p-2">Преймущество</div>
                 <div className="p-2">Доля побед</div>

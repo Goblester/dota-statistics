@@ -41,7 +41,11 @@ export const fetchHeroDuration = async (heroId: number): Promise<HeroDurationTyp
         console.error(e);
     }
 };
-
+/**
+ * gets hero matchups agains other heroes
+ * @param heroId - hero id
+ * @return {Promise<MatchupType[]>} - Hero matchups
+ */
 export const fetchHeroMatchups = async (heroId: number): Promise<MatchupType[]> => {
     try {
         const response = await fetch(`${BASE_URL}/api/heroes/${heroId}/matchups`);

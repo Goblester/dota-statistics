@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "yarn jest",
-    "test:watch": "npm jest --watch"
+    "test:watch": "npm jest --watch",
+    "lint:fix": "eslint --fix './src/**/*.{js,ts,tsx}'"
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
@@ -31,6 +32,7 @@
     "@typescript-eslint/parser": "^6.2.1",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "jest": "^29.6.2",
     "jest-environment-jsdom": "^29.6.2",
     "typescript": "5.1.6"

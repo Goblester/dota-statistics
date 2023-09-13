@@ -33,8 +33,8 @@ export default async function Hero({params}: PropsType) {
     const winPercentage = getHeroWinPercentage(heroDuration);
 
     return (
-        <div className="grid grid-rows-[7] grid-cols-2 max-w-screen-2xl mx-auto mt-10">
-            <div className="col-span-2 p-2 gap-x-2 grid grid-rows-2 grid-cols-[89px_repeat(4,_1fr)] h-24 bg-gray-700">
+        <div className="mx-auto mt-10 grid max-w-screen-2xl grid-cols-2 grid-rows-[7]">
+            <div className="col-span-2 grid h-24 grid-cols-[89px_repeat(4,_1fr)] grid-rows-2 gap-x-2 bg-gray-700 p-2">
                 <Image src={getImageSrc(hero.img)} alt={hero.localized_name} height={49} width={89}/>
                 <h1 className="col-span-2">
                     {hero.localized_name}<br/>
