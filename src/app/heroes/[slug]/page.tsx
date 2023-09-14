@@ -1,7 +1,7 @@
-import {fetchHero, fetchHeroDuration} from "@/api";
+import {fetchHeroDuration, fetchHeroStats} from "@/api";
 import {HERO_IDS} from "@/constants/heroIds";
 import Image from "next/image";
-import {HeroDurationType, HeroStatsType, MatchupType} from "@/types";
+import {HeroDurationType, HeroStatsType} from "@/types";
 import {getImageSrc} from "@/libs/getImageSrc/getImageSrc";
 import {HeroMatchupsTable} from "@/features/heroMatchupsTable/heroMatchupsTable";
 import {getPercentage} from "@/libs/getPercentage/getPercentage";
@@ -12,7 +12,7 @@ type PropsType = {
     };
 };
 
-type DataResponseType = [HeroStatsType, HeroDurationType[], MatchupType[]];
+type DataResponseType = [HeroStatsType[], HeroDurationType[]];
 
 const getHeroWinPercentage = (durations: HeroDurationType[]) => {
     const {wins, games_played} = durations.reduce((acc, currentValue) => {
@@ -28,8 +28,10 @@ export default async function Hero({params}: PropsType) {
 
     const heroId = HERO_IDS[params.slug];
 
-    const [hero, heroDuration] = await Promise.all([fetchHero(heroId), fetchHeroDuration(heroId)]) as DataResponseType;
-
+    const [heroStats, heroDuration] = await Promise.all([fetchHeroStats(), fetchHeroDuration(heroId)]) as DataResponseType;
+    
+    const hero = heroStats.find(hero => hero.hero_id === heroId);
+    
     const winPercentage = getHeroWinPercentage(heroDuration);
 
     return (
@@ -52,7 +54,7 @@ export default async function Hero({params}: PropsType) {
                     <span className="capitalize opacity-50">Доля побед</span>
                 </div>
             </div>
-            <HeroMatchupsTable heroId={heroId} />
+            <HeroMatchupsTable heroId={heroId} heroStats={heroStats} />
         </div>
 
     );

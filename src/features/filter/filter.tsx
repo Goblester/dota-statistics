@@ -13,7 +13,9 @@ const COMPLEXITY_BUTTONS: ComplexityType[] = [1, 2, 3];
 type PropsType = {
     filterState: FilterState
 }
-
+/**
+ * renders heroes filter
+ */
 export const FilterComponent: React.FC<PropsType> = observer(({filterState}) => {
 
     const [isSearchPending, startTransition] = useTransition();
@@ -61,5 +63,7 @@ export const FilterComponent: React.FC<PropsType> = observer(({filterState}) => 
         </div>
     );
 });
-
+/**
+ * Filter with filterState
+ */
 export const Filter = () => <FilterComponent filterState={filterState} />;

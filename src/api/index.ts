@@ -16,14 +16,12 @@ export const fetchHeroes = async (): Promise<HeroDataType[]> => {
 };
 /**
  * gets all heroes stats and returns hero data
- * @param heroId - hero id
- * @return {Promise<HeroStatsType>} - Hero data
+ * @return {Promise<HeroStatsType[]>} - Heroes stats data
  */
-export const fetchHero = async (heroId: number): Promise<HeroStatsType> => {
+export const fetchHeroStats = async (): Promise<HeroStatsType[]> => {
     try {
         const response = await fetch(`${BASE_URL}/api/heroStats`);
-        const data = await response.json() as HeroStatsType[];
-        return data.find(hero => hero.id === heroId);
+        return await response.json() as HeroStatsType[];
     } catch (e) {
         console.log(e);
     }
