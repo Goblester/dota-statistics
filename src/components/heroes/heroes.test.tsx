@@ -2,7 +2,7 @@ import {render, screen} from '@testing-library/react';
 import {Heroes} from '@/components/heroes/heroes';
 import {HeroDataType} from '@/types';
 import React from 'react';
-import {filterState} from "@/store/filter";
+import {filterState} from '@/store/filter';
 
 const heroes: HeroDataType[] = [
     {
