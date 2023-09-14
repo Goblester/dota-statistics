@@ -1,7 +1,8 @@
-import {render, screen} from "@testing-library/react";
-import {Heroes} from "@/components/heroes/heroes";
-import {HeroDataType} from "@/types";
-import React from "react";
+import {render, screen} from '@testing-library/react';
+import {Heroes} from '@/components/heroes/heroes';
+import {HeroDataType} from '@/types';
+import React from 'react';
+import {filterState} from "@/store/filter";
 
 const heroes: HeroDataType[] = [
     {
@@ -32,7 +33,7 @@ const heroes: HeroDataType[] = [
 
 describe('<Heroes/>', () => {
     it('should render main text', () => {
-        render(<Heroes heroes={heroes} />);
+        render(<Heroes heroes={heroes} filter={filterState} />);
 
         expect(screen.getByText('CHOOSE YOUR HERO')).toBeInTheDocument();
     });
@@ -49,7 +50,7 @@ describe('<Heroes/>', () => {
     it('should sort heroes', () => {
         heroes[1].localized_name = 'zeus';
 
-        render(<Heroes heroes={heroes}/>);
+        render(<Heroes heroes={heroes} filter={filterState}/>);
 
         const allHeroes = screen.getAllByRole('link');
 

@@ -1,10 +1,10 @@
-import {fetchHeroDuration, fetchHeroStats} from "@/api";
-import {HERO_IDS} from "@/constants/heroIds";
-import Image from "next/image";
-import {HeroDurationType, HeroStatsType} from "@/types";
-import {getImageSrc} from "@/libs/getImageSrc/getImageSrc";
-import {HeroMatchupsTable} from "@/features/heroMatchupsTable/heroMatchupsTable";
-import {getPercentage} from "@/libs/getPercentage/getPercentage";
+import {fetchHeroDuration, fetchHeroStats} from '@/api';
+import {HERO_IDS} from '@/constants/heroIds';
+import Image from 'next/image';
+import {HeroDurationType, HeroStatsType} from '@/types';
+import {getImageSrc} from '@/libs/getImageSrc/getImageSrc';
+import {HeroMatchupsTable} from '@/features/heroMatchupsTable/heroMatchupsTable';
+import {getPercentage} from '@/libs/getPercentage/getPercentage';
 
 type PropsType = {
     params: {

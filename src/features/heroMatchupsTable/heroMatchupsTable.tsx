@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import {fetchHeroMatchups} from "@/api";
-import {getPercentage} from "@/libs/getPercentage/getPercentage";
-import {HeroStatsType} from "@/types";
-import Image from "next/image";
-import {getImageSrc} from "@/libs/getImageSrc/getImageSrc";
+'use client';
+import React from 'react';
+import {fetchHeroMatchups} from '@/api';
+import {getPercentage} from '@/libs/getPercentage/getPercentage';
+import {HeroStatsType} from '@/types';
+import Image from 'next/image';
+import {getImageSrc} from '@/libs/getImageSrc/getImageSrc';
 
 
 type PropsType = {

@@ -1,5 +1,5 @@
-import {HeroDataType, HeroDurationType, HeroStatsType, MatchupType} from "@/types";
-import {BASE_URL} from "@/constants/api";
+import {HeroDataType, HeroDurationType, HeroStatsType, MatchupType} from '@/types';
+import {BASE_URL} from '@/constants/api';
 
 
 /**

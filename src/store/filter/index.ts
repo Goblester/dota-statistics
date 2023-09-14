@@ -1,4 +1,4 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable} from 'mobx';
 
 export type AttributeType = 'str' | 'agi' | 'int' | 'all' | '';
 export type ComplexityType = 0 | 1 | 2 | 3;
@@ -21,7 +21,7 @@ export class FilterState {
      */
     setAttribute (newAttribute: AttributeType) {
         if(newAttribute === this.attribute) {
-            this.attribute = "";
+            this.attribute = '';
         } else {
             this.attribute = newAttribute;
         }

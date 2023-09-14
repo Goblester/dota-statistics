@@ -1,10 +1,10 @@
-"use client";
-import React, {useTransition} from "react";
-import {FILTER_ATTRIBUTES} from "@/constants/attributes";
-import filterDiamond from "@/assets/heroes/attributes/filter-diamond.png";
-import {SearchIcon} from "@/components/icons/searchIcon";
-import {observer} from "mobx-react-lite";
-import {AttributeType, ComplexityType, filterState, FilterState} from "@/store/filter";
+'use client';
+import React, {useTransition} from 'react';
+import {FILTER_ATTRIBUTES} from '@/constants/attributes';
+import filterDiamond from '@/assets/heroes/attributes/filter-diamond.png';
+import {SearchIcon} from '@/components/icons/searchIcon';
+import {observer} from 'mobx-react-lite';
+import {AttributeType, ComplexityType, filterState, FilterState} from '@/store/filter';
 
 const ATTRIBUTE_BUTTONS: AttributeType[] = ['str', 'agi', 'int', 'all'];
 

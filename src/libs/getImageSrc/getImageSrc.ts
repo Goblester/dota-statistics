@@ -1,4 +1,4 @@
-import {BASE_URL} from "@/constants/api";
+import {BASE_URL} from '@/constants/api';
 
 /**
  * creates full url to load img from remote resource

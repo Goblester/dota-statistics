@@ -1,13 +1,13 @@
 //TODO mobx needs some SSR integration. This component should be sever side rendered
-"use client";
-import React, {ReactNode} from "react";
-import {HeroDataType} from "@/types";
-import Link from "next/link";
-import {HERO_IMAGES} from "@/constants/heroImages";
-import Image from "next/image";
-import {ATTRIBUTES} from "@/constants/attributes";
-import {filterState, FilterState} from "@/store/filter";
-import {observer} from "mobx-react-lite";
+'use client';
+import React, {ReactNode} from 'react';
+import {HeroDataType} from '@/types';
+import Link from 'next/link';
+import {HERO_IMAGES} from '@/constants/heroImages';
+import Image from 'next/image';
+import {ATTRIBUTES} from '@/constants/attributes';
+import {filterState, FilterState} from '@/store/filter';
+import {observer} from 'mobx-react-lite';
 
 
 /**

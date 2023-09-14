@@ -1,4 +1,4 @@
-import {getPercentage} from "@/libs/getPercentage/getPercentage";
+import {getPercentage} from '@/libs/getPercentage/getPercentage';
 
 
 describe('getPercentage', () => {

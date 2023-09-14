@@ -1,4 +1,4 @@
-import {FilterState} from "@/store/filter/index";
+import {FilterState} from '@/store/filter/index';
 
 let filterState: FilterState;
 

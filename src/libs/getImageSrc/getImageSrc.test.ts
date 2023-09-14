@@ -1,4 +1,4 @@
-import {getImageSrc} from "@/libs/getImageSrc/getImageSrc";
+import {getImageSrc} from '@/libs/getImageSrc/getImageSrc';
 
 
 describe('getImageSrc', () => {

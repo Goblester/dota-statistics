@@ -1,8 +1,8 @@
-import React from "react";
-import {render, screen} from "@testing-library/react";
-import {Filter} from "@/features/filter/filter";
-import userEvent from "@testing-library/user-event/";
-import {filterState} from "@/store/filter";
+import React from 'react';
+import {render, screen} from '@testing-library/react';
+import {Filter} from '@/features/filter/filter';
+import userEvent from '@testing-library/user-event/';
+import {filterState} from '@/store/filter';
 
 
 

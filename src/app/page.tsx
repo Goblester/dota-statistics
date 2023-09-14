@@ -1,6 +1,6 @@
-import {fetchHeroes} from "@/api";
-import {Heroes} from "@/components/heroes/heroes";
-import {Filter} from "@/features/filter/filter";
+import {fetchHeroes} from '@/api';
+import {Heroes} from '@/components/heroes/heroes';
+import {Filter} from '@/features/filter/filter';
 
 export default async function Home() {
 
